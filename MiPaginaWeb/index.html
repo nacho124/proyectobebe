@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Que tan bien te conocen tus amigos? 
+                                        Preguntales tu mismo y descubre 
+                                        qué tan bien te conocen tus amgos 
+                                        haciendo tu propio Test!">
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/codigo.js"></script>
+    <title>¿Que tan bien me conoces?</title>
+</head>
+<body>
+    <h1>Esta es mi Primer Pagina Web</h1>
+    
+    <h2>Crea tu historia</h2>
+    <p>Responde las preguntas y presiona el boton "CREAR" para formar tu historia fantástica!</p>
+
+    <form name="formulario_historia" action="" id="formHistoria">
+
+        <label for="strNombre">Cómo es tu nombre?</label>
+        <input type="text" id="strNombre"><br>
+
+        <label for="strHome">En qué ciudad vives?</label>
+        <input type="text" id="strHome"><br>
+    
+        <label for="strFood">Cuál es tu comida favorita?</label>
+        <input type="text" id="strFood"><br>
+    
+        <label for="strSuperpoder">Qué superpoder quisieras tener?</label>
+        <input type="text" id="strSuperpoder"><br>
+
+        <label for="strAmor">Cómo se llama quien te gusta?</label>
+        <input type="text" id="strAmor"><br>
+
+    </form>
+    <input type="button" id="btnCrearHistoria" value="CREAR"><br>
+    <div id=divHistoria></div>
+
+    <h2>Crea tu Test de AmIsTAD!</h2>
+    <form method="POST" action="/MiPaginaWeb/testdeamistad/">
+        <button type="submit">Continue</button>
+    </form>
+    
+
+    
+</body>
+</html>
