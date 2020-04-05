@@ -30,18 +30,23 @@
     $cuestionario = $cuestionario."::";
     echo $cuestionario."<br>";
     
+    
     if(isset($_GET['correctas'])){
         $array_correctas = $_GET['correctas'];
-        //echo "Estas son las correctas: <br>";
-        
-        foreach ($array_correctas as $correcta){ 
-            //echo "Opcion: $correcta<br />";
-            $cuestionario = $cuestionario.$correcta.",,";
+        while(sizeof($array_correctas)<4){
+            array_push($array_correctas, "0");
         }
-        
-    } else{
-        //echo "No hay respuestas correctas.";
+        echo "Estas son las correctas: <br>";
+    }  else{
+        echo "No hay respuestas correctas.";
+        $array_correctas = array("0","0","0","0");
     }
+    foreach ($array_correctas as $correcta){ 
+        echo "Opcion: $correcta<br />";
+        $cuestionario = $cuestionario.$correcta.",,";
+    }
+
+
     $cuestionario = rtrim($cuestionario,",,");
     
     $cuestionario = $cuestionario."///";
@@ -58,8 +63,7 @@
     
     
     header("Location:" . "http://localhost:8080/MiPaginaWeb/testdeamistad/genera_pregunta.php");
-    
-    
+
     
 
 
