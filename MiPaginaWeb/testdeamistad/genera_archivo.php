@@ -1,6 +1,35 @@
+<?php
 
-    <?php
-    $nombreUsuario=$_GET["strNombre"];
+require('datos_conexion.php');
+$nombreUsuario=$_GET["strNombre"];
+
+try{
+    $base = new PDO("mysql:host=$direccion;dbname=$nombre_db",$usuario,$passwrd);
+    echo ("conexion ok. <br>");
+
+} catch (Exeption $e) {
+    die ( 'Error conectando a la BD: '. $e ->GetMessage());
+} finally{
+        
+    $resultado=false;    
+       
+    while($resultado === false){
+        $test = rand(100000, 999999);
+        $sql = "insert into tests (id, nombre) values ($test, '$nombreUsuario')";
+        $resultado = $base ->exec($sql);
+        if ($resultado === false ){
+            echo 'Error inserting data.';
+        }else{
+            echo "Se insertaron los datos.";
+            setcookie("testamistad_cookie",$test,time()+1800);
+            setcookie("testamistad_cookie_preguntas",0,time()+1800);
+        }
+    }
+    $base=null;
+}
+
+
+/*
     $flag = false;
     while (!$flag){
         $test = rand(100000, 999999);    
@@ -16,26 +45,10 @@
      $ruta = fopen("./$test/test_data.txt", "w");
      fwrite($ruta, $nombreUsuario."///");
      fclose($ruta);
-     
-     $rutaIndex=fopen("./$test/index.php", "w");
-     setcookie("testamistad_cookie_visitor",$test,time()+172800);
-     fwrite($rutaIndex,'<!DOCTYPE html>
-     <html lang="es">
-     <head>
-         <meta charset="UTF-8">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-         <meta name="description" content="Que tan bien te conocen tus amigos? 
-                                             Preguntales tu mismo y descubre 
-                                             qué tan bien te conocen tus amgos 
-                                             haciendo tu propio Test!">
-         <title>¿Que tan bien me conoces?</title>
-     </head>
-     <body>
-     </body>
-     </html>');
-     fclose($rutaIndex);
-     
+
+*/
     
-    header("Location:" . "http://localhost:8080/MiPaginaWeb/testdeamistad/genera_pregunta.php");
-    ?>
+    header("Location:" . "genera_pregunta.php");
+ 
+ 
+?>
